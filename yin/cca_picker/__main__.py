@@ -81,16 +81,6 @@ def clean_data(df, genders):
 
 
 def selection(df):
-    """
-    students are picked by random
-    if their first choice has space, fill the slot
-    else place in waiting list
-    clear the waiting list.
-    repeat for second and third choice
-    finally fill quota from no preference
-    caveat: no preference has lowest priority
-    """
-
     choice_cols = df.columns.tolist()[4:7]
 
     for j in range(len(choice_cols)):
@@ -124,9 +114,6 @@ def selection(df):
                 waiting.append(student)
 
         # clear waiting list
-        # pref_waiting = list(filter(lambda x: x[choice].iloc[0] != "No Preference", waiting))
-        # nopref_waiting = list(filter(lambda x: x[choice].iloc[0] == "No Preference", waiting))
-        # print(len(pref_waiting), len(nopref_waiting))
         for student in waiting:
             if not df["result"].isna().any():
                 break
